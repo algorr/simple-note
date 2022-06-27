@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/view/task_page.dart';
 
 class CreateNewTask extends StatelessWidget {
   const CreateNewTask(this.username, {Key? key}) : super(key: key);

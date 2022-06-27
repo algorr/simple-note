@@ -37,7 +37,7 @@ class ToggleTaskCompleteEvent extends TaskEvent {
   final String task;
   final String username;
 
-  ToggleTaskCompleteEvent(this.task, this.username);
+  const ToggleTaskCompleteEvent(this.task, this.username);
 
   @override
   List<Object?> get props => [task, username];

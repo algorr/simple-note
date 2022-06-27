@@ -13,7 +13,7 @@ class TaskLoadedState extends TaskState {
   final List<Task> tasks;
   final String username;
 
-  TaskLoadedState(this.tasks, this.username);
+  const TaskLoadedState(this.tasks, this.username);
 
   @override
   List<Object> get props => [tasks, username];
@@ -22,7 +22,7 @@ class TaskLoadedState extends TaskState {
 class AddTaskState extends TaskState {
   final String username;
 
-  AddTaskState(this.username);
+  const AddTaskState(this.username);
   @override
   List<Object?> get props => [username];
 }
@@ -30,7 +30,7 @@ class AddTaskState extends TaskState {
 class RemoveTaskState extends TaskState {
   final String username;
 
-  RemoveTaskState(this.username);
+  const RemoveTaskState(this.username);
   @override
   List<Object?> get props => [username];
 }

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:untitled/blocs/home_bloc.dart';
 import 'package:untitled/blocs/task_bloc.dart';
-import 'package:untitled/blocs/task_bloc.dart';
-import 'package:untitled/models/user.dart';
+import 'package:untitled/consts/task_page_consts.dart';
 import 'package:untitled/services/task_service.dart';
 import 'package:untitled/view/create_new_task.dart';
 
@@ -23,10 +21,10 @@ class TaskPage extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
-              title: const Text("Task Page"),
+              title: const Text(TaskPageConsts.appbarTitle),
               centerTitle: true,
             ),
-            floatingActionButton: FloatingActionButton(child: Icon(Icons.plus_one_rounded),onPressed: ()async{
+            floatingActionButton: FloatingActionButton(child: const Icon(Icons.plus_one_rounded),onPressed: ()async{
               final result = await showDialog(context: context, builder: (context) => Dialog(child: CreateNewTask(user),));
               if (result != null) {
                 BlocProvider.of<TaskBloc>(context)
@@ -43,7 +41,7 @@ class TaskPage extends StatelessWidget {
                             children: [
                               ...state.tasks.map(
                                 (e) => Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 10,vertical: 5),
+                                  padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 5),
                                   child: Card(
                                     child: ListTile(
                                       title: Text(e.task),

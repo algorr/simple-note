@@ -18,6 +18,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           event.username, event.password);
       if (user != null) {
         emit(LoginState(user));
+        print(user.toString());
       }
       return;
     });
