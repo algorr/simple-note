@@ -4,6 +4,16 @@ abstract class HomeEvent extends Equatable {
   const HomeEvent();
 }
 
+class HomeInitialEvent extends HomeEvent {
+  final String username;
+  final String password;
+
+  const HomeInitialEvent(this.username,this.password);
+
+  @override
+  List<Object?> get props => [username,password];
+}
+
 class LoginEvent extends HomeEvent {
   final String username;
   final String password;
@@ -11,7 +21,7 @@ class LoginEvent extends HomeEvent {
   const LoginEvent(this.username, this.password);
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [username, password];
 }
 
 class RegisterEvent extends HomeEvent {
@@ -21,10 +31,10 @@ class RegisterEvent extends HomeEvent {
   const RegisterEvent(this.username, this.password);
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [username, password];
 }
 
 class ServiceEvent extends HomeEvent {
   @override
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [];
 }

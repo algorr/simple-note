@@ -6,11 +6,12 @@ abstract class HomeState extends Equatable {
 
 class HomeInitial extends HomeState {
   final String? exception;
+  final String? username;
 
-  const HomeInitial({this.exception});
+  const HomeInitial({this.exception, this.username});
 
   @override
-  List<Object?> get props => [exception];
+  List<Object?> get props => [exception,username];
 }
 
 class LoginState extends HomeState {

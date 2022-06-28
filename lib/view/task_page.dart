@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/blocs/task_bloc.dart';
 import 'package:untitled/consts/task_page_consts.dart';
 import 'package:untitled/services/task_service.dart';
-import 'package:untitled/view/create_new_task.dart';
+import 'package:untitled/widgets/create_new_task.dart';
 
 enum CheckBox { tick, notTick }
 
@@ -21,19 +21,25 @@ class TaskPage extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
-              title: const Text(TaskPageConsts.appbarTitle),
+              title: const Text(TaskPageTextConsts.appbarTitle),
               centerTitle: true,
             ),
-            floatingActionButton: FloatingActionButton(child: const Icon(Icons.plus_one_rounded),onPressed: ()async{
-              final result = await showDialog(context: context, builder: (context) => Dialog(child: CreateNewTask(user),));
-              if (result != null) {
-                BlocProvider.of<TaskBloc>(context)
-                    .add(AddTaskEvent(result, user));
-              }
-            },),
+            floatingActionButton: FloatingActionButton(
+              child: const Icon(TaskPageIconConsts.taskPageAddNoteIcon),
+              onPressed: () async {
+                final result = await showDialog(
+                    context: context,
+                    builder: (context) => Dialog(
+                          child: CreateNewTask(user),
+                        ));
+                if (result != null) {
+                  BlocProvider.of<TaskBloc>(context)
+                      .add(AddTaskEvent(result, user));
+                }
+              },
+            ),
             body: state is TaskLoadedState
                 ? SizedBox(
-
                     child: Column(
                       children: [
                         Expanded(
@@ -41,10 +47,16 @@ class TaskPage extends StatelessWidget {
                             children: [
                               ...state.tasks.map(
                                 (e) => Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 5),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10, vertical: 5),
                                   child: Card(
                                     child: ListTile(
                                       title: Text(e.task),
+                                      trailing: e.complete
+                                          ? const Icon(TaskPageIconConsts
+                                              .taskPageCompletedTaskIcon)
+                                          : const Icon(TaskPageIconConsts
+                                              .taskPageNotCompletedTaskIcon),
                                     ),
                                   ),
                                 ),

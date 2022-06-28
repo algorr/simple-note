@@ -18,29 +18,37 @@ class AuthPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          TextField(
-            controller: usernameController,
-            decoration: const InputDecoration(
-                labelText: AuthPageConsts.usernameLabelText),
-            onTap: () {},
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 70,vertical: 20),
+            child: TextField(
+              controller: usernameController,
+              decoration:  InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+                  labelText: AuthPageConsts.usernameLabelText),
+              onTap: () {},
+            ),
           ),
-          TextField(
-            controller: passwordController,
-            decoration: const InputDecoration(
-                labelText: AuthPageConsts.passwordLabelText),
-            onTap: () {},
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 70),
+            child: TextField(
+              controller: passwordController,
+              decoration:  InputDecoration(border:  OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+                  labelText: AuthPageConsts.passwordLabelText),
+              onTap: () {},
+            ),
           ),
           AuthButton(
               buttonText: AuthPageConsts.signButtonTitle,
               onPressed: () {
                 BlocProvider.of<HomeBloc>(context).add(LoginEvent(
                     usernameController.text, passwordController.text));
+                print("SIGIN BUTTON CALISTI");
               }),
           AuthButton(
               buttonText: AuthPageConsts.registerButtonTitle,
               onPressed: () {
                 BlocProvider.of<HomeBloc>(context).add(RegisterEvent(
                     usernameController.text, passwordController.text));
+                print("REGISTER BUTTON CALISTI");
               }),
         ],
       ),

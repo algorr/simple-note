@@ -12,20 +12,26 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final TaskService _taskService;
 
   HomeBloc(this._authenticationService, this._taskService)
-      : super(const HomeInitial()) {
+      : super(const ServiceState()) {
+    //in loginstate this'll broadcast
     on<LoginEvent>((event, emit) async {
       final user = await _authenticationService.authenticateUser(
           event.username, event.password);
       if (user != null) {
         emit(LoginState(user));
-        print(user.toString());
       }
       return;
     });
 
+    on<HomeInitialEvent>((event, emit) {
+      emit(HomeInitial());
+    });
+
+    //in registerstate this'll broadcast
     on<RegisterEvent>((event, emit) async {
       final result = await _authenticationService.createUser(
           event.username, event.password);
+
       switch (result) {
         case UserCreationResult.success:
           emit(LoginState(event.username));
@@ -40,9 +46,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       }
     });
 
+    //in servicestate for initilazing this'll broadcast
     on<ServiceEvent>((event, emit) async {
       await _authenticationService.init();
       await _taskService.init();
+      emit(const HomeInitial());
     });
   }
 }
