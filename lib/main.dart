@@ -26,9 +26,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Hive & Bloc',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+        theme: _themeOfApp(),
         home: BlocProvider(
           create: (context) => HomeBloc(
               RepositoryProvider.of<AuthenticationService>(context),
@@ -40,3 +38,10 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+  ThemeData _themeOfApp() {
+    return ThemeData(
+        primarySwatch: Colors.red,
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+            selectedItemColor: Colors.red, unselectedItemColor: Colors.grey));
+  }
