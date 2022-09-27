@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class TaskPageTextConsts {
-  static const appbarTitle = 'Task Page';
+  static const appbarTitle = 'Tasks';
 }
 
 class TaskPageIconConsts{

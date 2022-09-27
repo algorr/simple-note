@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:untitled/blocs/home_bloc.dart';
+import 'package:untitled/consts/main_consts.dart';
 import 'package:untitled/services/authentication_service.dart';
 import 'package:untitled/services/task_service.dart';
+import 'package:untitled/viewmodel/home_bloc.dart';
 import 'view/bloc_logic.dart';
-
 
 void main() async {
   await Hive.initFlutter();
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         RepositoryProvider(create: (context) => TaskService()),
       ],
       child: MaterialApp(
-        title: 'Hive & Bloc',
+        title: MainConsts.title,
         debugShowCheckedModeBanner: false,
         theme: _themeOfApp(),
         home: BlocProvider(
@@ -39,9 +39,9 @@ class MyApp extends StatelessWidget {
   }
 }
 
-  ThemeData _themeOfApp() {
-    return ThemeData(
-        primarySwatch: Colors.red,
-        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-            selectedItemColor: Colors.red, unselectedItemColor: Colors.grey));
-  }
+ThemeData _themeOfApp() {
+  return ThemeData(
+      primarySwatch: Colors.red,
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          selectedItemColor: Colors.red, unselectedItemColor: Colors.grey));
+}

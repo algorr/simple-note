@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive/hive.dart';
-import 'package:untitled/blocs/home_bloc.dart';
 import 'package:untitled/view/auth_page.dart';
-import 'package:untitled/view/home_page.dart';
 import 'package:untitled/view/task_page.dart';
-import '../models/user.dart';
-import '../services/authentication_service.dart';
+import '../viewmodel/home_bloc.dart';
+
 
 class BlocLogic extends StatefulWidget {
   const BlocLogic({Key? key}) : super(key: key);
@@ -21,14 +18,19 @@ class _BlocLogicState extends State<BlocLogic> {
     return Scaffold(
       body: BlocConsumer<HomeBloc, HomeState>(
         listener: (context, state) {
+          print(state);
           if (state is LoginState) {
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => TaskPage(user: state.username)));
           }
         },
         builder: (context, state) {
+          print(state);
+          if (state is LoginState) {
+          return  TaskPage(user: state.username,);
+          }
           if (state is HomeInitial) {
-          return AuthPage();
+          return const AuthPage();
           }
           return const AuthPage();
         },

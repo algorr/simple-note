@@ -10,11 +10,11 @@ class CreateNewTask extends StatelessWidget {
     final inputController = TextEditingController();
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.only(
+        const Padding(
+          padding: EdgeInsets.only(
             top: 25,
           ),
-          child: const Text("What task do you want to create?"),
+          child: Text("What task do you want to create?"),
         ),
         Padding(
           padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
@@ -23,22 +23,22 @@ class CreateNewTask extends StatelessWidget {
             decoration: InputDecoration(
               hintText: 'Do Something',
               border: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey),
+                borderSide: const BorderSide(color: Colors.grey),
                 borderRadius: BorderRadius.circular(10.0),
               ),
               disabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey),
+                borderSide: const BorderSide(color: Colors.grey),
                 borderRadius: BorderRadius.circular(10.0),
               ),
               fillColor: Colors.grey,
               contentPadding:
                   const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey),
+                borderSide: const BorderSide(color: Colors.grey),
                 borderRadius: BorderRadius.circular(10.0),
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.red),
+                borderSide: const BorderSide(color: Colors.red),
                 borderRadius: BorderRadius.circular(10.0),
               ),
             ),

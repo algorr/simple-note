@@ -4,7 +4,6 @@ import '../services/authentication_service.dart';
 import '../services/task_service.dart';
 
 part 'home_event.dart';
-
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
@@ -24,7 +23,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     });
 
     on<HomeInitialEvent>((event, emit) {
-      emit(HomeInitial());
+      emit(const HomeInitial());
     });
 
     //in registerstate this'll broadcast

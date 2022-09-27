@@ -21,7 +21,7 @@ class AuthenticationService {
     return null;
   }
 
-  Future<UserCreationResult> createUser(
+  Future<UserCreationResult> createUser(        
       String username, String password) async {
     final alreadyExist =
         _box.values.any((element) => element.username == username);
