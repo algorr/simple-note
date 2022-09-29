@@ -5,7 +5,6 @@ import 'package:untitled/services/task_service.dart';
 import 'package:untitled/view/profile_page.dart';
 import 'package:untitled/widgets/create_new_task.dart';
 import 'package:untitled/widgets/custom_tasks_list_card_view.dart';
-
 import '../viewmodel/task_bloc.dart';
 
 enum CheckBox { tick, notTick }
@@ -22,13 +21,19 @@ class TaskPage extends StatelessWidget {
       child: BlocBuilder<TaskBloc, TaskState>(
         builder: (context, state) {
           return Scaffold(
+            backgroundColor: Colors.white,
             appBar: AppBar(
               title: const Text(TaskPageTextConsts.appbarTitle),
               centerTitle: true,
               actions: [
-                IconButton(onPressed: (){
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=> ProfilePage(user: user,)));
-                }, icon: const Icon(Icons.person_outlined))
+                IconButton(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => ProfilePage(
+                                user: user,
+                              )));
+                    },
+                    icon: const Icon(Icons.person_outlined))
               ],
             ),
             floatingActionButton: _CustomFloatingButton(user: user),
@@ -41,10 +46,9 @@ class TaskPage extends StatelessWidget {
                             children: [
                               ...state.tasks.map(
                                 (e) => Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 10, vertical: 5),
-                                  child:CustomTasksListCardView(e: e)
-                                ),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10, vertical: 5),
+                                    child: CustomTasksListCardView(e: e)),
                               ),
                             ],
                           ),
@@ -76,16 +80,15 @@ class _CustomFloatingButton extends StatelessWidget {
       child: const Icon(TaskPageIconConsts.taskPageAddNoteIcon),
       onPressed: () async {
         final result = await showModalBottomSheet(
-          elevation: 10,
-          shape: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+            backgroundColor: Colors.transparent,
+            barrierColor: Colors.transparent,
+            //shape: OutlineInputBorder(borderRadius: BorderRadius.circular(25)),
             context: context,
             builder: (context) => CreateNewTask(user));
         if (result != null) {
-          BlocProvider.of<TaskBloc>(context)
-              .add(AddTaskEvent(result, user));
+          BlocProvider.of<TaskBloc>(context).add(AddTaskEvent(result, user));
         }
       },
     );
   }
 }
-

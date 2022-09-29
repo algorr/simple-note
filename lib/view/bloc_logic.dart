@@ -29,7 +29,7 @@ class _BlocLogicState extends State<BlocLogic> {
           if (state is LoginState) {
           return  TaskPage(user: state.username,);
           }
-          if (state is HomeInitial) {
+          if (state is HomeInitial) { 
           return const AuthPage();
           }
           return const AuthPage();

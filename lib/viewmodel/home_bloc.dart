@@ -19,7 +19,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       if (user != null) {
         emit(LoginState(user));
       }
-      return;
+      emit(const HomeInitial());
     });
 
     on<HomeInitialEvent>((event, emit) {
